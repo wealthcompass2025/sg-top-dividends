@@ -3,320 +3,466 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Top 30 Singapore Quality Dividend Stocks - December 2, 2025</title>
+    <title>Top 30 Singapore Quality Dividend Stocks - Transparent Scoring</title>
     <style>
         * {
             margin: 0;
             padding: 0;
             box-sizing: border-box;
         }
-        
+
         body {
             font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', sans-serif;
             background: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
             min-height: 100vh;
-            padding: 20px;
+            padding: 15px;
+            color: #333;
         }
-        
+
         .container {
-            max-width: 1400px;
+            max-width: 1600px;
             margin: 0 auto;
             background: white;
             border-radius: 12px;
             box-shadow: 0 10px 40px rgba(0,0,0,0.1);
-            padding: 30px;
+            padding: 25px;
         }
-        
+
         .header {
             text-align: center;
             margin-bottom: 30px;
             border-bottom: 3px solid #1a6c73;
             padding-bottom: 20px;
         }
-        
+
         .header h1 {
             color: #1a6c73;
-            font-size: 32px;
-            margin-bottom: 10px;
+            font-size: 28px;
+            margin-bottom: 8px;
         }
-        
+
         .header p {
             color: #666;
             font-size: 14px;
+            margin-bottom: 5px;
         }
-        
+
         .timestamp {
             color: #999;
             font-size: 12px;
-            margin-top: 10px;
             font-style: italic;
         }
-        
-        .data-verified {
-            background: #e8f5e9;
-            border: 1px solid #4caf50;
-            color: #2e7d32;
-            padding: 10px 15px;
-            border-radius: 6px;
-            margin-top: 10px;
-            font-size: 12px;
-            font-weight: 600;
-        }
-        
-        .framework-section {
-            background: #f9f9f9;
+
+        .framework-info {
+            background: #f0f7f7;
             border-left: 4px solid #1a6c73;
-            padding: 20px;
-            margin-bottom: 30px;
-            border-radius: 8px;
-        }
-        
-        .framework-section h3 {
-            color: #1a6c73;
-            margin-bottom: 15px;
-            font-size: 16px;
-        }
-        
-        .components-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-            gap: 15px;
-        }
-        
-        .component {
-            background: white;
             padding: 15px;
+            margin-bottom: 25px;
             border-radius: 6px;
-            border: 1px solid #e0e0e0;
-        }
-        
-        .component-name {
-            font-weight: 600;
-            color: #1a6c73;
-            margin-bottom: 8px;
-        }
-        
-        .component-points {
-            font-size: 12px;
-            color: #666;
-            margin-bottom: 8px;
-        }
-        
-        .component-desc {
             font-size: 13px;
-            color: #555;
-            line-height: 1.4;
+            line-height: 1.6;
         }
-        
+
+        .framework-info strong {
+            color: #1a6c73;
+        }
+
+        .table-wrapper {
+            overflow-x: auto;
+            border-radius: 8px;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.05);
+        }
+
         table {
             width: 100%;
             border-collapse: collapse;
-            margin-top: 20px;
             font-size: 13px;
         }
-        
+
         thead {
             background: #1a6c73;
             color: white;
             position: sticky;
             top: 0;
+            z-index: 10;
         }
-        
+
         th {
-            padding: 12px;
-            text-align: left;
+            padding: 14px 10px;
+            text-align: center;
             font-weight: 600;
-            border: 1px solid #1a6c73;
+            border-right: 1px solid rgba(255,255,255,0.1);
+            white-space: nowrap;
         }
-        
-        td {
-            padding: 10px 12px;
-            border: 1px solid #e0e0e0;
+
+        th:first-child {
+            text-align: center;
         }
-        
-        tbody tr:nth-child(odd) {
+
+        th:nth-child(2) {
+            text-align: left;
+        }
+
+        tbody tr {
+            border-bottom: 1px solid #e5e5e5;
+            transition: background 0.2s ease;
+        }
+
+        tbody tr:hover {
             background: #f9f9f9;
         }
-        
-        tbody tr:hover {
-            background: #f0f8f9;
+
+        tbody tr:nth-child(odd) {
+            background: #fafafa;
         }
-        
-        .rank-top {
-            background: #fffacd !important;
-            font-weight: 600;
+
+        td {
+            padding: 12px 10px;
+            text-align: center;
         }
-        
+
+        td:nth-child(2) {
+            text-align: left;
+            font-weight: 500;
+        }
+
+        .rank-cell {
+            font-weight: 700;
+            color: #1a6c73;
+            font-size: 14px;
+            width: 50px;
+        }
+
         .stock-name {
-            font-weight: 600;
-            color: #1a6c73;
+            text-align: left;
+            max-width: 200px;
+            word-wrap: break-word;
         }
-        
-        .score-perfect {
-            background: #90EE90;
-            color: #1a6c73;
+
+        .yield-cell {
+            color: #e67e22;
             font-weight: 600;
-            text-align: center;
+        }
+
+        .score-component {
+            background: #f5f5f5;
+            border-radius: 3px;
+            padding: 8px 6px;
+        }
+
+        .total-score {
+            background: linear-gradient(135deg, #1a6c73 0%, #2a9b9e 100%);
+            color: white;
+            font-weight: 700;
             border-radius: 4px;
-            padding: 2px 4px;
+            padding: 8px 10px;
+            font-size: 14px;
+        }
+
+        /* Score coloring */
+        .score-80plus {
+            background: #d4edda;
+            color: #155724;
+        }
+
+        .score-70to80 {
+            background: #d1ecf1;
+            color: #0c5460;
+        }
+
+        .score-60to70 {
+            background: #fff3cd;
+            color: #856404;
+        }
+
+        .score-below60 {
+            background: #f8d7da;
+            color: #721c24;
+        }
+
+        /* Legend */
+        .legend {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 15px;
+            margin-top: 25px;
+            padding-top: 25px;
+            border-top: 2px solid #e5e5e5;
+        }
+
+        .legend-item {
+            background: #f9f9f9;
+            padding: 12px;
+            border-radius: 6px;
+            border-left: 3px solid #1a6c73;
             font-size: 12px;
         }
-        
-        .score-excellent {
-            background: #87CEEB;
+
+        .legend-item strong {
             color: #1a6c73;
-            font-weight: 600;
-            text-align: center;
-            border-radius: 4px;
-            padding: 2px 4px;
-            font-size: 12px;
+            display: block;
+            margin-bottom: 5px;
         }
-        
-        .score-good {
-            background: #FFE4B5;
-            color: #1a6c73;
-            font-weight: 600;
-            text-align: center;
-            border-radius: 4px;
-            padding: 2px 4px;
-            font-size: 12px;
+
+        /* Mobile responsive */
+        @media (max-width: 768px) {
+            .container {
+                padding: 15px;
+            }
+
+            .header h1 {
+                font-size: 22px;
+            }
+
+            table {
+                font-size: 12px;
+            }
+
+            th, td {
+                padding: 8px 6px;
+            }
+
+            .rank-cell {
+                width: 40px;
+                font-size: 12px;
+            }
+
+            .stock-name {
+                max-width: 120px;
+                font-size: 12px;
+            }
+
+            .score-component {
+                padding: 6px 4px;
+                font-size: 11px;
+            }
+
+            .total-score {
+                font-size: 12px;
+                padding: 6px 8px;
+            }
+
+            /* Hide columns on small screens for better readability */
+            th:nth-child(n+4):nth-child(-n+8),
+            td:nth-child(n+4):nth-child(-n+8) {
+                font-size: 10px;
+                padding: 6px 4px;
+            }
+
+            .framework-info {
+                font-size: 12px;
+            }
+
+            .legend {
+                grid-template-columns: 1fr;
+            }
         }
-        
-        .score-avg {
-            background: #F0E68C;
-            color: #1a6c73;
-            font-weight: 600;
-            text-align: center;
-            border-radius: 4px;
-            padding: 2px 4px;
-            font-size: 12px;
+
+        @media (max-width: 480px) {
+            .container {
+                padding: 10px;
+            }
+
+            .header h1 {
+                font-size: 18px;
+            }
+
+            .header p {
+                font-size: 12px;
+            }
+
+            table {
+                font-size: 11px;
+            }
+
+            th, td {
+                padding: 6px 4px;
+            }
+
+            .rank-cell {
+                width: 35px;
+                font-size: 11px;
+            }
+
+            /* On very small screens, show only essential columns */
+            th:nth-child(n+4),
+            td:nth-child(n+4) {
+                font-size: 10px;
+            }
+
+            .stock-name {
+                max-width: 100px;
+                font-size: 11px;
+            }
+
+            .score-component {
+                padding: 4px 2px;
+                font-size: 10px;
+            }
+
+            .total-score {
+                font-size: 11px;
+                padding: 4px 6px;
+            }
+
+            th {
+                padding: 6px 3px;
+            }
+
+            .framework-info {
+                font-size: 11px;
+                padding: 10px;
+            }
         }
-        
-        .yield-display {
-            text-align: right;
-            font-weight: 600;
-            color: #1a6c73;
-        }
-        
-        .price-display {
-            text-align: right;
-            font-weight: 600;
-            color: #1a6c73;
-        }
-        
-        .sector {
-            font-size: 11px;
-            color: #666;
-        }
-        
-        .footer {
-            margin-top: 30px;
-            padding-top: 20px;
-            border-top: 1px solid #e0e0e0;
-            text-align: center;
-            color: #999;
-            font-size: 12px;
+
+        /* Print styles */
+        @media print {
+            body {
+                background: white;
+            }
+
+            .container {
+                box-shadow: none;
+            }
+
+            tbody tr {
+                page-break-inside: avoid;
+            }
         }
     </style>
 </head>
 <body>
     <div class="container">
         <div class="header">
-            <h1>📊 Top 30 Singapore Quality Dividend Stocks</h1>
-            <p>Comprehensive Analysis Based on 100-Point Scoring Framework</p>
-            <div class="timestamp">Last Updated: December 2, 2025, 5:06 PM SGT</div>
-            <div class="data-verified">✅ DATA VERIFIED: Stock Prices & TTM Yields as of December 2, 2025 (Yahoo Finance, SGX)</div>
+            <h1>🏆 Top 30 Singapore Quality Dividend Stocks</h1>
+            <p><strong>Transparent, Reproducible Scoring Framework</strong></p>
+            <p>December 3, 2025</p>
+            <div class="timestamp">Data as of market close | Framework: 70% Objective + 30% Subjective</div>
         </div>
-        
-        <div class="framework-section">
-            <h3>📈 Scoring Framework Breakdown (100 Points Total)</h3>
-            <div class="components-grid">
-                <div class="component">
-                    <div class="component-name">📍 Dividend Track Record</div>
-                    <div class="component-points">25 Points</div>
-                    <div class="component-desc">Historical consistency, payment reliability, and 15+ year dividend history without cuts</div>
-                </div>
-                <div class="component">
-                    <div class="component-name">💪 Financial Health</div>
-                    <div class="component-points">20 Points</div>
-                    <div class="component-desc">Balance sheet strength, debt levels, ROE, and cash flow generation capability</div>
-                </div>
-                <div class="component">
-                    <div class="component-name">📈 Performance History</div>
-                    <div class="component-points">20 Points</div>
-                    <div class="component-desc">Long-term total returns, market position, and share price stability</div>
-                </div>
-                <div class="component">
-                    <div class="component-name">🎯 Dividend Quality</div>
-                    <div class="component-points">15 Points</div>
-                    <div class="component-desc">Payout ratio sustainability, dividend growth trajectory, and yield appropriateness</div>
-                </div>
-                <div class="component">
-                    <div class="component-name">💰 Valuation Metrics</div>
-                    <div class="component-points">10 Points</div>
-                    <div class="component-desc">P/E ratio, P/B ratio, and sector-appropriate valuation assessment</div>
-                </div>
-                <div class="component">
-                    <div class="component-name">🏢 Business Quality</div>
-                    <div class="component-points">10 Points</div>
-                    <div class="component-desc">Competitive moats, market leadership, and management quality</div>
-                </div>
+
+        <div class="framework-info">
+            <strong>Scoring Methodology:</strong> 
+            <strong>DT</strong> = Dividend Yield Tier | 
+            <strong>DQ</strong> = Dividend Quality & Growth | 
+            <strong>FH</strong> = Financial Health | 
+            <strong>VM</strong> = Valuation Metrics | 
+            <strong>PH</strong> = Payout Ratio History | 
+            <strong>BQ</strong> = Business Quality (Subjective) | 
+            <strong>Total</strong> = Combined Score (0-100)
+        </div>
+
+        <div class="table-wrapper">
+            <table id="stocksTable">
+                <thead>
+                    <tr>
+                        <th>Rank</th>
+                        <th>Stock Name</th>
+                        <th>Yield</th>
+                        <th title="Dividend Yield Tier">DT</th>
+                        <th title="Dividend Quality & Growth">DQ</th>
+                        <th title="Financial Health">FH</th>
+                        <th title="Valuation Metrics">VM</th>
+                        <th title="Payout Ratio History">PH</th>
+                        <th title="Business Quality">BQ</th>
+                        <th>Total Score</th>
+                    </tr>
+                </thead>
+                <tbody id="tableBody">
+                </tbody>
+            </table>
+        </div>
+
+        <div class="legend">
+            <div class="legend-item">
+                <strong>✓ Excellent</strong>
+                Score 75+: Top tier dividend quality
+            </div>
+            <div class="legend-item">
+                <strong>✓ Good</strong>
+                Score 65-75: Solid dividend stock
+            </div>
+            <div class="legend-item">
+                <strong>⚠ Fair</strong>
+                Score 55-65: Moderate appeal
+            </div>
+            <div class="legend-item">
+                <strong>⚠ Below Average</strong>
+                Score <55: Limited dividend appeal
             </div>
         </div>
-        
-        <table>
-            <thead>
-                <tr>
-                    <th>Rank</th>
-                    <th>Stock Name</th>
-                    <th>Ticker</th>
-                    <th>Sector</th>
-                    <th>Price (S$)</th>
-                    <th>TTM Yield (%)</th>
-                    <th style="text-align: center;">Track</th>
-                    <th style="text-align: center;">Health</th>
-                    <th style="text-align: center;">Perf</th>
-                    <th style="text-align: center;">Div Qual</th>
-                    <th style="text-align: center;">Val</th>
-                    <th style="text-align: center;">Bus</th>
-                    <th style="text-align: center;">Total</th>
-                </tr>
-            </thead>
-            <tbody>
-                <tr class="rank-top"><td>1</td><td class="stock-name">OCBC Bank</td><td>O39</td><td class="sector">Banking</td><td class="price-display">18.07</td><td class="yield-display">5.42%</td><td style="text-align: center;"><span class="score-perfect">25</span></td><td style="text-align: center;"><span class="score-perfect">20</span></td><td style="text-align: center;"><span class="score-perfect">20</span></td><td style="text-align: center;"><span class="score-perfect">15</span></td><td style="text-align: center;"><span class="score-excellent">10</span></td><td style="text-align: center;"><span class="score-perfect">10</span></td><td><span class="score-perfect">100</span></td></tr>
-                <tr class="rank-top"><td>1</td><td class="stock-name">UOB</td><td>U11</td><td class="sector">Banking</td><td class="price-display">33.85</td><td class="yield-display">5.02%</td><td style="text-align: center;"><span class="score-perfect">25</span></td><td style="text-align: center;"><span class="score-perfect">20</span></td><td style="text-align: center;"><span class="score-perfect">20</span></td><td style="text-align: center;"><span class="score-perfect">15</span></td><td style="text-align: center;"><span class="score-excellent">10</span></td><td style="text-align: center;"><span class="score-perfect">10</span></td><td><span class="score-perfect">100</span></td></tr>
-                <tr class="rank-top"><td>1</td><td class="stock-name">DBS Group</td><td>D05</td><td class="sector">Banking</td><td class="price-display">54.20</td><td class="yield-display">4.15%</td><td style="text-align: center;"><span class="score-perfect">25</span></td><td style="text-align: center;"><span class="score-perfect">20</span></td><td style="text-align: center;"><span class="score-perfect">20</span></td><td style="text-align: center;"><span class="score-perfect">15</span></td><td style="text-align: center;"><span class="score-excellent">10</span></td><td style="text-align: center;"><span class="score-perfect">10</span></td><td><span class="score-perfect">100</span></td></tr>
-                <tr><td>4</td><td class="stock-name">Singtel</td><td>Z74</td><td class="sector">Telecom</td><td class="price-display">4.02</td><td class="yield-display">3.23%</td><td style="text-align: center;"><span class="score-excellent">25</span></td><td style="text-align: center;"><span class="score-excellent">18</span></td><td style="text-align: center;"><span class="score-excellent">18</span></td><td style="text-align: center;"><span class="score-good">12</span></td><td style="text-align: center;"><span class="score-excellent">10</span></td><td style="text-align: center;"><span class="score-excellent">9</span></td><td><span class="score-excellent">92</span></td></tr>
-                <tr><td>5</td><td class="stock-name">CapitaLand Inv Ltd</td><td>9CI</td><td class="sector">Real Estate</td><td class="price-display">3.12</td><td class="yield-display">4.49%</td><td style="text-align: center;"><span class="score-excellent">24</span></td><td style="text-align: center;"><span class="score-excellent">19</span></td><td style="text-align: center;"><span class="score-excellent">19</span></td><td style="text-align: center;"><span class="score-excellent">14</span></td><td style="text-align: center;"><span class="score-good">9</span></td><td style="text-align: center;"><span class="score-excellent">9</span></td><td><span class="score-excellent">94</span></td></tr>
-                <tr><td>6</td><td class="stock-name">SGX Limited</td><td>S68</td><td class="sector">Exchange</td><td class="price-display">16.86</td><td class="yield-display">2.37%</td><td style="text-align: center;"><span class="score-excellent">24</span></td><td style="text-align: center;"><span class="score-excellent">19</span></td><td style="text-align: center;"><span class="score-good">17</span></td><td style="text-align: center;"><span class="score-good">11</span></td><td style="text-align: center;"><span class="score-excellent">10</span></td><td style="text-align: center;"><span class="score-excellent">9</span></td><td><span class="score-excellent">90</span></td></tr>
-                <tr><td>7</td><td class="stock-name">ST Engineering</td><td>S63</td><td class="sector">Industrial</td><td class="price-display">3.48</td><td class="yield-display">2.30%</td><td style="text-align: center;"><span class="score-excellent">23</span></td><td style="text-align: center;"><span class="score-excellent">18</span></td><td style="text-align: center;"><span class="score-good">17</span></td><td style="text-align: center;"><span class="score-good">11</span></td><td style="text-align: center;"><span class="score-good">9</span></td><td style="text-align: center;"><span class="score-excellent">9</span></td><td><span class="score-excellent">87</span></td></tr>
-                <tr><td>8</td><td class="stock-name">Keppel Corporation</td><td>BN4</td><td class="sector">Marine</td><td class="price-display">4.45</td><td class="yield-display">3.37%</td><td style="text-align: center;"><span class="score-excellent">23</span></td><td style="text-align: center;"><span class="score-good">17</span></td><td style="text-align: center;"><span class="score-good">16</span></td><td style="text-align: center;"><span class="score-good">12</span></td><td style="text-align: center;"><span class="score-good">8</span></td><td style="text-align: center;"><span class="score-good">8</span></td><td><span class="score-good">84</span></td></tr>
-                <tr><td>9</td><td class="stock-name">Venture Corp</td><td>V03</td><td class="sector">Electronics</td><td class="price-display">3.89</td><td class="yield-display">4.63%</td><td style="text-align: center;"><span class="score-excellent">22</span></td><td style="text-align: center;"><span class="score-good">16</span></td><td style="text-align: center;"><span class="score-good">16</span></td><td style="text-align: center;"><span class="score-good">13</span></td><td style="text-align: center;"><span class="score-good">8</span></td><td style="text-align: center;"><span class="score-good">8</span></td><td><span class="score-good">83</span></td></tr>
-                <tr><td>10</td><td class="stock-name">ComfortDelGro</td><td>C52</td><td class="sector">Transport</td><td class="price-display">4.23</td><td class="yield-display">5.20%</td><td style="text-align: center;"><span class="score-excellent">22</span></td><td style="text-align: center;"><span class="score-good">16</span></td><td style="text-align: center;"><span class="score-good">16</span></td><td style="text-align: center;"><span class="score-good">13</span></td><td style="text-align: center;"><span class="score-good">8</span></td><td style="text-align: center;"><span class="score-good">7</span></td><td><span class="score-good">82</span></td></tr>
-                <tr><td>11</td><td class="stock-name">Mapletree Pan Asia</td><td>MPACT</td><td class="sector">REIT</td><td class="price-display">2.14</td><td class="yield-display">5.61%</td><td style="text-align: center;"><span class="score-good">21</span></td><td style="text-align: center;"><span class="score-good">15</span></td><td style="text-align: center;"><span class="score-good">15</span></td><td style="text-align: center;"><span class="score-good">12</span></td><td style="text-align: center;"><span class="score-good">8</span></td><td style="text-align: center;"><span class="score-good">7</span></td><td><span class="score-good">78</span></td></tr>
-                <tr><td>12</td><td class="stock-name">Frasers Centrepoint</td><td>FCT</td><td class="sector">REIT</td><td class="price-display">2.03</td><td class="yield-display">5.42%</td><td style="text-align: center;"><span class="score-good">20</span></td><td style="text-align: center;"><span class="score-good">15</span></td><td style="text-align: center;"><span class="score-good">15</span></td><td style="text-align: center;"><span class="score-good">13</span></td><td style="text-align: center;"><span class="score-good">7</span></td><td style="text-align: center;"><span class="score-good">7</span></td><td><span class="score-good">77</span></td></tr>
-                <tr><td>13</td><td class="stock-name">AIMS APAC REIT</td><td>AA</td><td class="sector">REIT</td><td class="price-display">1.87</td><td class="yield-display">6.42%</td><td style="text-align: center;"><span class="score-good">20</span></td><td style="text-align: center;"><span class="score-good">15</span></td><td style="text-align: center;"><span class="score-good">15</span></td><td style="text-align: center;"><span class="score-good">12</span></td><td style="text-align: center;"><span class="score-good">7</span></td><td style="text-align: center;"><span class="score-good">7</span></td><td><span class="score-good">76</span></td></tr>
-                <tr><td>14</td><td class="stock-name">Ascendas REIT</td><td>A17U</td><td class="sector">REIT</td><td class="price-display">2.89</td><td class="yield-display">5.54%</td><td style="text-align: center;"><span class="score-good">19</span></td><td style="text-align: center;"><span class="score-good">14</span></td><td style="text-align: center;"><span class="score-good">14</span></td><td style="text-align: center;"><span class="score-good">12</span></td><td style="text-align: center;"><span class="score-good">7</span></td><td style="text-align: center;"><span class="score-good">6</span></td><td><span class="score-good">72</span></td></tr>
-                <tr><td>15</td><td class="stock-name">Lendlease Global Comm</td><td>LREIT</td><td class="sector">REIT</td><td class="price-display">2.45</td><td class="yield-display">5.31%</td><td style="text-align: center;"><span class="score-good">19</span></td><td style="text-align: center;"><span class="score-good">14</span></td><td style="text-align: center;"><span class="score-good">14</span></td><td style="text-align: center;"><span class="score-good">12</span></td><td style="text-align: center;"><span class="score-good">7</span></td><td style="text-align: center;"><span class="score-good">6</span></td><td><span class="score-good">72</span></td></tr>
-                <tr><td>16</td><td class="stock-name">Singapore Airlines</td><td>C6L</td><td class="sector">Airlines</td><td class="price-display">6.50</td><td class="yield-display">4.62%</td><td style="text-align: center;"><span class="score-good">18</span></td><td style="text-align: center;"><span class="score-avg">13</span></td><td style="text-align: center;"><span class="score-good">14</span></td><td style="text-align: center;"><span class="score-good">12</span></td><td style="text-align: center;"><span class="score-good">7</span></td><td style="text-align: center;"><span class="score-good">6</span></td><td><span class="score-good">70</span></td></tr>
-                <tr><td>17</td><td class="stock-name">Sheng Siong Group</td><td>SSG</td><td class="sector">Retail</td><td class="price-display">3.95</td><td class="yield-display">3.80%</td><td style="text-align: center;"><span class="score-good">18</span></td><td style="text-align: center;"><span class="score-good">13</span></td><td style="text-align: center;"><span class="score-good">13</span></td><td style="text-align: center;"><span class="score-good">11</span></td><td style="text-align: center;"><span class="score-good">7</span></td><td style="text-align: center;"><span class="score-good">6</span></td><td><span class="score-good">68</span></td></tr>
-                <tr><td>18</td><td class="stock-name">Great Eastern</td><td>G07</td><td class="sector">Insurance</td><td class="price-display">1.89</td><td class="yield-display">3.17%</td><td style="text-align: center;"><span class="score-good">17</span></td><td style="text-align: center;"><span class="score-good">13</span></td><td style="text-align: center;"><span class="score-good">13</span></td><td style="text-align: center;"><span class="score-avg">10</span></td><td style="text-align: center;"><span class="score-good">7</span></td><td style="text-align: center;"><span class="score-good">6</span></td><td><span class="score-good">66</span></td></tr>
-                <tr><td>19</td><td class="stock-name">Haw Par</td><td>H02</td><td class="sector">Healthcare</td><td class="price-display">2.78</td><td class="yield-display">2.52%</td><td style="text-align: center;"><span class="score-good">17</span></td><td style="text-align: center;"><span class="score-good">13</span></td><td style="text-align: center;"><span class="score-good">13</span></td><td style="text-align: center;"><span class="score-avg">10</span></td><td style="text-align: center;"><span class="score-good">7</span></td><td style="text-align: center;"><span class="score-good">6</span></td><td><span class="score-good">66</span></td></tr>
-                <tr><td>20</td><td class="stock-name">Keppel DC REIT</td><td>CDREIT</td><td class="sector">REIT</td><td class="price-display">1.65</td><td class="yield-display">3.64%</td><td style="text-align: center;"><span class="score-good">16</span></td><td style="text-align: center;"><span class="score-good">12</span></td><td style="text-align: center;"><span class="score-good">12</span></td><td style="text-align: center;"><span class="score-avg">10</span></td><td style="text-align: center;"><span class="score-good">7</span></td><td style="text-align: center;"><span class="score-good">6</span></td><td><span class="score-good">63</span></td></tr>
-                <tr><td>21</td><td class="stock-name">Mapletree Ind Trust</td><td>ME8U</td><td class="sector">REIT</td><td class="price-display">1.79</td><td class="yield-display">5.59%</td><td style="text-align: center;"><span class="score-good">16</span></td><td style="text-align: center;"><span class="score-avg">11</span></td><td style="text-align: center;"><span class="score-good">12</span></td><td style="text-align: center;"><span class="score-avg">10</span></td><td style="text-align: center;"><span class="score-good">7</span></td><td style="text-align: center;"><span class="score-good">6</span></td><td><span class="score-good">62</span></td></tr>
-                <tr><td>22</td><td class="stock-name">Mapletree Logistics</td><td>MLT</td><td class="sector">REIT</td><td class="price-display">3.75</td><td class="yield-display">4.80%</td><td style="text-align: center;"><span class="score-good">15</span></td><td style="text-align: center;"><span class="score-avg">11</span></td><td style="text-align: center;"><span class="score-good">12</span></td><td style="text-align: center;"><span class="score-avg">10</span></td><td style="text-align: center;"><span class="score-good">7</span></td><td style="text-align: center;"><span class="score-good">6</span></td><td><span class="score-good">61</span></td></tr>
-                <tr><td>23</td><td class="stock-name">Elite UK REIT</td><td>EURT</td><td class="sector">REIT</td><td class="price-display">1.16</td><td class="yield-display">8.62%</td><td style="text-align: center;"><span class="score-avg">14</span></td><td style="text-align: center;"><span class="score-avg">11</span></td><td style="text-align: center;"><span class="score-avg">11</span></td><td style="text-align: center;"><span class="score-avg">10</span></td><td style="text-align: center;"><span class="score-good">7</span></td><td style="text-align: center;"><span class="score-avg">5</span></td><td><span class="score-avg">58</span></td></tr>
-                <tr><td>24</td><td class="stock-name">Boustead Singapore</td><td>F9D</td><td class="sector">Industrial</td><td class="price-display">4.10</td><td class="yield-display">3.17%</td><td style="text-align: center;"><span class="score-avg">14</span></td><td style="text-align: center;"><span class="score-avg">10</span></td><td style="text-align: center;"><span class="score-avg">10</span></td><td style="text-align: center;"><span class="score-avg">10</span></td><td style="text-align: center;"><span class="score-good">7</span></td><td style="text-align: center;"><span class="score-avg">5</span></td><td><span class="score-avg">56</span></td></tr>
-                <tr><td>25</td><td class="stock-name">CapitaLand CICT</td><td>C38U</td><td class="sector">REIT</td><td class="price-display">2.12</td><td class="yield-display">4.72%</td><td style="text-align: center;"><span class="score-avg">13</span></td><td style="text-align: center;"><span class="score-avg">10</span></td><td style="text-align: center;"><span class="score-avg">10</span></td><td style="text-align: center;"><span class="score-avg">9</span></td><td style="text-align: center;"><span class="score-good">7</span></td><td style="text-align: center;"><span class="score-avg">5</span></td><td><span class="score-avg">54</span></td></tr>
-                <tr><td>26</td><td class="stock-name">DFI Retail Group</td><td>D01</td><td class="sector">Retail</td><td class="price-display">2.38</td><td class="yield-display">3.36%</td><td style="text-align: center;"><span class="score-avg">12</span></td><td style="text-align: center;"><span class="score-avg">9</span></td><td style="text-align: center;"><span class="score-avg">9</span></td><td style="text-align: center;"><span class="score-avg">8</span></td><td style="text-align: center;"><span class="score-good">7</span></td><td style="text-align: center;"><span class="score-avg">5</span></td><td><span class="score-avg">50</span></td></tr>
-                <tr><td>27</td><td class="stock-name">Singapore Post</td><td>S08</td><td class="sector">Postal</td><td class="price-display">0.87</td><td class="yield-display">1.15%</td><td style="text-align: center;"><span class="score-avg">11</span></td><td style="text-align: center;"><span class="score-avg">8</span></td><td style="text-align: center;"><span class="score-avg">8</span></td><td style="text-align: center;"><span class="score-avg">7</span></td><td style="text-align: center;"><span class="score-good">7</span></td><td style="text-align: center;"><span class="score-avg">5</span></td><td><span class="score-avg">46</span></td></tr>
-                <tr><td>28</td><td class="stock-name">Cortina Holdings</td><td>C41</td><td class="sector">Retail</td><td class="price-display">1.02</td><td class="yield-display">0.98%</td><td style="text-align: center;"><span class="score-avg">11</span></td><td style="text-align: center;"><span class="score-avg">8</span></td><td style="text-align: center;"><span class="score-avg">8</span></td><td style="text-align: center;"><span class="score-avg">9</span></td><td style="text-align: center;"><span class="score-good">7</span></td><td style="text-align: center;"><span class="score-avg">4</span></td><td><span class="score-avg">47</span></td></tr>
-                <tr><td>29</td><td class="stock-name">Valuetronics Holdings</td><td>BN2</td><td class="sector">Mfg</td><td class="price-display">0.95</td><td class="yield-display">17.89%</td><td style="text-align: center;"><span class="score-avg">10</span></td><td style="text-align: center;"><span class="score-avg">8</span></td><td style="text-align: center;"><span class="score-avg">8</span></td><td style="text-align: center;"><span class="score-avg">8</span></td><td style="text-align: center;"><span class="score-good">7</span></td><td style="text-align: center;"><span class="score-avg">4</span></td><td><span class="score-avg">45</span></td></tr>
-                <tr><td>30</td><td class="stock-name">JiuTian Chemical</td><td>Q05</td><td class="sector">Chemicals</td><td class="price-display">2.45</td><td class="yield-display">4.90%</td><td style="text-align: center;"><span class="score-avg">9</span></td><td style="text-align: center;"><span class="score-avg">7</span></td><td style="text-align: center;"><span class="score-avg">7</span></td><td style="text-align: center;"><span class="score-avg">7</span></td><td style="text-align: center;"><span class="score-good">7</span></td><td style="text-align: center;"><span class="score-avg">4</span></td><td><span class="score-avg">41</span></td></tr>
-            </tbody>
-        </table>
-        
-        
     </div>
+
+    <script>
+        // Data from FINAL sheet
+        const stocksData = [
+            {"Rank": 1, "Stock": "Pan-United", "Yield": 0.0324, "DT": 16, "DQ": 27, "FH": 7.65, "VM": 6.18, "PH": 8.82, "BQ": 15, "Total Score": 80.65},
+            {"Rank": 2, "Stock": "DBS", "Yield": 0.0432, "DT": 18, "DQ": 27, "FH": 0.59, "VM": 5.74, "PH": 13.68, "BQ": 15, "Total Score": 80.00},
+            {"Rank": 3, "Stock": "Sembcorp Industries", "Yield": 0.0428, "DT": 18, "DQ": 27, "FH": 0.88, "VM": 5.00, "PH": 14.12, "BQ": 10, "Total Score": 75.00},
+            {"Rank": 4, "Stock": "Food Empire", "Yield": 0.0350, "DT": 16, "DQ": 15, "FH": 6.47, "VM": 6.76, "PH": 15.00, "BQ": 15, "Total Score": 74.24},
+            {"Rank": 5, "Stock": "Singapore Exchange", "Yield": 0.0224, "DT": 8, "DQ": 24, "FH": 6.18, "VM": 9.26, "PH": 11.03, "BQ": 15, "Total Score": 73.47},
+            {"Rank": 6, "Stock": "SBS Transit", "Yield": 0.0743, "DT": 20, "DQ": 27, "FH": 8.53, "VM": 4.85, "PH": 7.06, "BQ": 5, "Total Score": 72.44},
+            {"Rank": 7, "Stock": "Yangzijiang", "Yield": 0.0356, "DT": 16, "DQ": 18, "FH": 6.76, "VM": 5.59, "PH": 14.56, "BQ": 10, "Total Score": 70.91},
+            {"Rank": 8, "Stock": "OCBC", "Yield": 0.0437, "DT": 10, "DQ": 27, "FH": 2.94, "VM": 4.71, "PH": 10.15, "BQ": 15, "Total Score": 69.79},
+            {"Rank": 9, "Stock": "UOB", "Yield": 0.0515, "DT": 14, "DQ": 27, "FH": 1.18, "VM": 3.68, "PH": 8.38, "BQ": 15, "Total Score": 69.24},
+            {"Rank": 10, "Stock": "Parkway Life REIT", "Yield": 0.0370, "DT": 8, "DQ": 27, "FH": 4.41, "VM": 5.44, "PH": 7.94, "BQ": 15, "Total Score": 67.79},
+            {"Rank": 11, "Stock": "Riverstone", "Yield": 0.0592, "DT": 18, "DQ": 15, "FH": 9.12, "VM": 6.76, "PH": 6.62, "BQ": 10, "Total Score": 65.50},
+            {"Rank": 12, "Stock": "Boustead Singapore", "Yield": 0.0441, "DT": 18, "DQ": 21, "FH": 8.24, "VM": 3.82, "PH": 9.26, "BQ": 5, "Total Score": 65.32},
+            {"Rank": 13, "Stock": "China Aviation Oil", "Yield": 0.0246, "DT": 14, "DQ": 18, "FH": 9.12, "VM": 3.38, "PH": 10.59, "BQ": 10, "Total Score": 65.09},
+            {"Rank": 14, "Stock": "Singtel", "Yield": 0.0386, "DT": 16, "DQ": 18, "FH": 4.71, "VM": 6.47, "PH": 4.41, "BQ": 15, "Total Score": 64.59},
+            {"Rank": 15, "Stock": "Bumitama", "Yield": 0.0639, "DT": 20, "DQ": 12, "FH": 7.35, "VM": 5.44, "PH": 9.71, "BQ": 10, "Total Score": 64.50},
+            {"Rank": 16, "Stock": "ValueMax Group", "Yield": 0.0394, "DT": 16, "DQ": 24, "FH": 1.18, "VM": 4.71, "PH": 13.24, "BQ": 5, "Total Score": 64.12},
+            {"Rank": 17, "Stock": "First Resources", "Yield": 0.0522, "DT": 20, "DQ": 15, "FH": 7.94, "VM": 4.41, "PH": 0.88, "BQ": 15, "Total Score": 63.24},
+            {"Rank": 18, "Stock": "Sheng Siong", "Yield": 0.0243, "DT": 6, "DQ": 18, "FH": 7.06, "VM": 8.68, "PH": 12.79, "BQ": 10, "Total Score": 62.53},
+            {"Rank": 19, "Stock": "China Sunsine Chemical", "Yield": 0.0256, "DT": 14, "DQ": 15, "FH": 9.12, "VM": 3.09, "PH": 6.18, "BQ": 15, "Total Score": 62.38},
+            {"Rank": 20, "Stock": "UOB Kay Hian", "Yield": 0.0484, "DT": 18, "DQ": 21, "FH": 5.59, "VM": 3.68, "PH": 7.50, "BQ": 5, "Total Score": 60.76},
+            {"Rank": 21, "Stock": "Capitaland Integrated Commercial Trust", "Yield": 0.0532, "DT": 12, "DQ": 27, "FH": 4.12, "VM": 4.56, "PH": 3.09, "BQ": 10, "Total Score": 60.76},
+            {"Rank": 22, "Stock": "Hong Leong Asia", "Yield": 0.0233, "DT": 14, "DQ": 9, "FH": 2.65, "VM": 5.00, "PH": 12.35, "BQ": 15, "Total Score": 58.00},
+            {"Rank": 23, "Stock": "Singapore Technologies Engineering", "Yield": 0.0206, "DT": 8, "DQ": 18, "FH": 0.29, "VM": 9.26, "PH": 11.91, "BQ": 10, "Total Score": 57.47},
+            {"Rank": 24, "Stock": "Netlink NBN Trust", "Yield": 0.0561, "DT": 12, "DQ": 21, "FH": 5.88, "VM": 5.44, "PH": 2.65, "BQ": 10, "Total Score": 56.97},
+            {"Rank": 25, "Stock": "Capitaland Ascendas REIT", "Yield": 0.0538, "DT": 12, "DQ": 18, "FH": 3.24, "VM": 5.15, "PH": 3.53, "BQ": 15, "Total Score": 56.91},
+            {"Rank": 26, "Stock": "UOL", "Yield": 0.0208, "DT": 14, "DQ": 18, "FH": 5.29, "VM": 3.68, "PH": 5.74, "BQ": 10, "Total Score": 56.71},
+            {"Rank": 27, "Stock": "Bukit Sembawang Estates", "Yield": 0.0454, "DT": 18, "DQ": 21, "FH": 9.12, "VM": 3.09, "PH": 0.44, "BQ": 5, "Total Score": 56.65},
+            {"Rank": 28, "Stock": "Keppel DC REIT", "Yield": 0.0432, "DT": 10, "DQ": 12, "FH": 4.71, "VM": 5.00, "PH": 11.47, "BQ": 10, "Total Score": 53.18},
+            {"Rank": 29, "Stock": "Frasers Centrepoint Trust", "Yield": 0.0528, "DT": 12, "DQ": 18, "FH": 3.82, "VM": 4.71, "PH": 3.97, "BQ": 10, "Total Score": 52.50},
+            {"Rank": 30, "Stock": "Hong Leong Finance", "Yield": 0.0490, "DT": 14, "DQ": 18, "FH": 8.53, "VM": 3.09, "PH": 2.21, "BQ": 5, "Total Score": 50.82}
+        ];
+
+        // Function to determine score color
+        function getScoreClass(score) {
+            if (score >= 75) return 'score-80plus';
+            if (score >= 65) return 'score-70to80';
+            if (score >= 55) return 'score-60to70';
+            return 'score-below60';
+        }
+
+        // Populate table
+        const tableBody = document.getElementById('tableBody');
+        
+        stocksData.forEach(stock => {
+            const row = document.createElement('tr');
+            
+            row.innerHTML = `
+                <td class="rank-cell">#${stock.Rank}</td>
+                <td class="stock-name">${stock.Stock}</td>
+                <td class="yield-cell">${(stock.Yield * 100).toFixed(2)}%</td>
+                <td class="score-component">${stock.DT}</td>
+                <td class="score-component">${stock.DQ}</td>
+                <td class="score-component">${stock.FH.toFixed(2)}</td>
+                <td class="score-component">${stock.VM.toFixed(2)}</td>
+                <td class="score-component">${stock.PH.toFixed(2)}</td>
+                <td class="score-component">${stock.BQ}</td>
+                <td class="total-score ${getScoreClass(stock['Total Score'])}">${stock['Total Score'].toFixed(2)}</td>
+            `;
+            
+            tableBody.appendChild(row);
+        });
+
+        // Sort functionality (optional)
+        document.getElementById('stocksTable').addEventListener('click', function(e) {
+            if (e.target.tagName === 'TH') {
+                // Could add sorting logic here
+            }
+        });
+    </script>
 </body>
 </html>
